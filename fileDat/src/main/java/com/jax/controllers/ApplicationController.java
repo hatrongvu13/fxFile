@@ -163,7 +163,7 @@ public class ApplicationController implements Initializable {
                 BufferedInputStream bis = new BufferedInputStream(fis);
                 ObjectInputStream ois = new ObjectInputStream(bis);
 
-                int count
+                int count = ois.readInt();
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
