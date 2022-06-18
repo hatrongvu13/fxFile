@@ -71,14 +71,14 @@ public class ApplicationController implements Initializable {
 
     @FXML
     void loadFile(MouseEvent event) {
-        System.out.println(this.readDatFile(fileName.getText()+".dat").getName());
+        System.out.println(this.readObjectDatFile(fileName.getText()+".dat").getName());
         mappingData();
     }
 
     @FXML
     void saveFile(MouseEvent event) {
         mappingData();
-        this.writeDatFile();
+        this.writeObjectDatFile();
     }
 
     @Override
@@ -103,7 +103,7 @@ public class ApplicationController implements Initializable {
         return true;
     }
 
-    private void writeDatFile(){
+    private void writeObjectDatFile(){
         String fileSave = "";
         if (!fileName.getText().isBlank()) {
             fileSave += fileName.getText();
@@ -126,7 +126,11 @@ public class ApplicationController implements Initializable {
             e.printStackTrace();
         }
     }
-    private TempData readDatFile(String filePath){
+
+    private void writeListObjectDatFile(){
+
+    }
+    private TempData readObjectDatFile(String filePath){
         try {
             File inputFile = new File(filePath);
             if(inputFile.isFile()) {
@@ -150,5 +154,23 @@ public class ApplicationController implements Initializable {
             e.printStackTrace();
             return new TempData();
         }
+    }
+
+    private List<TempData> readListObjectDatFile(String filePath) {
+        if (!filePath.isEmpty()) {
+            try {
+                FileInputStream fis = new FileInputStream(filePath);
+                BufferedInputStream bis = new BufferedInputStream(fis);
+                ObjectInputStream ois = new ObjectInputStream(bis);
+
+                int count
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return new ArrayList<>();
     }
 }
